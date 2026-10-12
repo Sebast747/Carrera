@@ -1,0 +1,46 @@
+﻿@model List<Corredor>
+
+@{
+    ViewData["Title"] = "Inscritos";
+}
+
+<h2>Inscritos: @Model.Count</h2>
+<p><a class="btn btn-success" href="/Admin/Descargar">Descargar Excel (CSV)</a></p>
+
+<div style="overflow-x:auto;">
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th>Folio</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Género</th>
+                <th>Categoría</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>CFE</th>
+                <th>RPE</th>
+                <th>Talla</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model)
+            {
+                <tr>
+                    <td>CFE-@c.Id.ToString("D4")</td>
+                    <td>@c.Nombre</td>
+                    <td>@c.Edad</td>
+                    <td>@c.Genero</td>
+                    <td>@c.CategoriaEdad</td>
+                    <td>@c.Correo</td>
+                    <td>@c.Telefono</td>
+                    <td>@(c.EsEmpleadoCFE ? "Sí" : "No")</td>
+                    <td>@c.RPE</td>
+                    <td>@c.TallaPlayera</td>
+                    <td>@c.FechaRegistro.AddHours(-6).ToString("dd/MM/yyyy HH:mm")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
