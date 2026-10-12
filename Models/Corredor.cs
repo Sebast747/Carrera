@@ -30,6 +30,6 @@ namespace CarreraCFE.Models
         [Required]
         public string TallaPlayera { get; set; } = string.Empty; // Infantil (4, 6, 8, 10, 12) o Adulto (S, M, L, XL)
 
-        public DateTime FechaRegistro { get; set; } = DateTime.Now;
+        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
     }
 }

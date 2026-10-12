@@ -25,7 +25,7 @@ namespace CarreraCFE.Controllers
         {
             if (ModelState.IsValid)
             {
-                corredor.FechaRegistro = DateTime.Now;
+                corredor.FechaRegistro = DateTime.UtcNow;
                 _context.Corredores.Add(corredor);
                 await _context.SaveChangesAsync();
 
