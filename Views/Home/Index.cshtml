@@ -1,0 +1,123 @@
+﻿@{
+    ViewData["Title"] = "Carrera por la Seguridad CFE";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrera por la Seguridad 2da Edición - CFE</title>
+    <style>
+            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; }
+            .hero { background: linear-gradient(135deg, #008752 0%, #004d2e 100%); color: white; padding: 40px 20px; text-align: center; }
+            .hero h1 { margin: 0; font-size: 2.2em; text-transform: uppercase; }
+            .hero h3 { margin-top: 5px; font-weight: 300; opacity: 0.9; }
+            .event-info { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
+            .info-card { background: rgba(255, 255, 255, 0.15); padding: 10px 18px; border-radius: 8px; backdrop-filter: blur(5px); font-size: 0.95em; }
+            .container { max-width: 650px; background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); margin: -25px auto 40px auto; position: relative; z-index: 10; }
+            .form-group { margin-bottom: 16px; }
+            label { display: block; font-weight: 600; margin-bottom: 5px; color: #2c3e50; }
+            input, select { width: 100%; padding: 11px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 15px; }
+            input:focus, select:focus { border-color: #008752; outline: none; box-shadow: 0 0 0 3px rgba(0,135,82,0.15); }
+            .row { display: flex; gap: 15px; }
+            .col { flex: 1; }
+            .btn-submit { background-color: #008752; color: white; font-size: 18px; font-weight: bold; border: none; padding: 14px; border-radius: 6px; cursor: pointer; width: 100%; transition: background 0.2s; margin-top: 10px; }
+            .btn-submit:hover { background-color: #00663e; }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>Carrera por la Seguridad 2da Edición</h1>
+        <h3>Comisión Federal de Electricidad • 5 KM</h3>
+
+        <div class="event-info">
+            <div class="info-card">📅 <strong>Sábado 31 de Octubre</strong></div>
+            <div class="info-card">⏰ <strong>6:30 AM</strong></div>
+            <div class="info-card">📍 <strong>La Diana, Costera Miguel Alemán</strong></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 style="text-align: center; color: #008752; margin-top: 0;">Registro Abierto (Público General e Infantil)</h2>
+
+        <form asp-action="Registrar" method="POST">
+            <div class="form-group">
+                <label for="Nombre">Nombre Completo:</label>
+                <input type="text" id="Nombre" name="Nombre" required placeholder="Nombre(s) y Apellidos">
+            </div>
+
+            <div class="row">
+                <div class="col form-group">
+                    <label for="Edad">Edad:</label>
+                    <input type="number" id="Edad" name="Edad" required min="3" max="100" placeholder="Ej. 25 o 10">
+                </div>
+                <div class="col form-group">
+                    <label for="Genero">Género:</label>
+                    <select id="Genero" name="Genero">
+                        <option value="Varonil">Varonil</option>
+                        <option value="Femenil">Femenil</option>
+                        <option value="Mixto">Otro / Libre</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col form-group">
+                    <label for="CategoriaEdad">Categoría:</label>
+                    <select id="CategoriaEdad" name="CategoriaEdad">
+                        <option value="Infantil">Infantil (Niños)</option>
+                        <option value="Libre / Adultos">Libre / Adultos</option>
+                    </select>
+                </div>
+                <div class="col form-group">
+                    <label for="TallaPlayera">Talla de Playera:</label>
+                    <select id="TallaPlayera" name="TallaPlayera">
+                        <option value="Infantil CH">Infantil CH (4-6)</option>
+                        <option value="Infantil M">Infantil M (8-10)</option>
+                        <option value="Infantil G">Infantil G (12-14)</option>
+                        <option value="Adulto S">Adulto (S)</option>
+                        <option value="Adulto M">Adulto (M)</option>
+                        <option value="Adulto L">Adulto (L)</option>
+                        <option value="Adulto XL">Adulto (XL)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Correo">Correo Electrónico:</label>
+                <input type="email" id="Correo" name="Correo" required placeholder="correo@ejemplo.com">
+            </div>
+
+            <div class="form-group">
+                <label for="Telefono">Teléfono / WhatsApp:</label>
+                <input type="tel" id="Telefono" name="Telefono" required placeholder="10 dígitos">
+            </div>
+
+            <div class="form-group">
+                <label for="EsEmpleadoCFE">¿Perteneces a la CFE?</label>
+                <select id="EsEmpleadoCFE" name="EsEmpleadoCFE" onchange="toggleRPE()">
+                    <option value="false">Público en General / Invitado</option>
+                    <option value="true">Trabajador CFE</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="divRPE" style="display: none;">
+                <label for="RPE">Número de Empleado (RPE):</label>
+                <input type="text" id="RPE" name="RPE" placeholder="Ingresa tu RPE">
+            </div>
+
+            <button type="submit" class="btn-submit">Completar Inscripción</button>
+        </form>
+    </div>
+
+    <script>
+            function toggleRPE() {
+                const esEmpleado = document.getElementById("EsEmpleadoCFE").value;
+                document.getElementById("divRPE").style.display = (esEmpleado === "true") ? "block" : "none";
+            }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+﻿@model CarreraCFE.Models.Corredor
+
+@{
+    ViewData["Title"] = "Registro Exitoso";
+}
+
+<div style="max-width: 600px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); font-family: sans-serif;">
+    <div style="text-align: center; color: #008752;">
+        <h1 style="margin-bottom: 5px;">¡Inscripción Exitosa! 🎉</h1>
+        <p style="color: #555;">Carrera por la Seguridad 2da Edición - CFE</p>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+    <p>Hola <strong>@Model.Nombre</strong>, tu registro ha sido completado con éxito.</p>
+
+    <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid #008752; margin: 20px 0;">
+        <p style="margin: 5px 0;"><strong>Folio de Registro:</strong> #CFE-@Model.Id.ToString("D4")</p>
+        <p style="margin: 5px 0;"><strong>Categoría:</strong> @Model.CategoriaEdad (@Model.Genero)</p>
+        <p style="margin: 5px 0;"><strong>Talla de Playera:</strong> @Model.TallaPlayera</p>
+        <p style="margin: 5px 0;"><strong>Distancia:</strong> 5 KM</p>
+    </div>
+
+    <div style="background-color: #e6f4ea; padding: 15px; border-radius: 8px; color: #137333;">
+        <h4 style="margin-top: 0;">📍 Detalles del Evento:</h4>
+        <p style="margin: 3px 0;">📅 <strong>Sábado 31 de Octubre</strong></p>
+        <p style="margin: 3px 0;">⏰ <strong>6:30 AM</strong></p>
+        <p style="margin: 3px 0;">📍 <strong>La Diana, Costera Miguel Alemán</strong></p>
+    </div>
+
+    <div style="text-align: center; margin-top: 25px;">
+        <a href="/" style="background-color: #008752; color: white; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: bold;">Registrar a otro participante</a>
+    </div>
+</div>
